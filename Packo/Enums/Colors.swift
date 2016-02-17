@@ -11,4 +11,5 @@ enum Colors : String {
     case ButtonDark = "#1f4b6f"
     case FormField = "#7c858d"
     case LightGray = "#F2F2F2"
+    case LightBlue = "#94C0E7"
 }

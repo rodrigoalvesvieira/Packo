@@ -8,9 +8,10 @@
 
 import UIKit
 import CoreData
+
 import Mixpanel
 
-class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class TripsViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -43,20 +44,13 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if let mixpanel = Mixpanel.sharedInstance() {
-//            mixpanel.track("View Opened", properties: ["Trips View": NSDate()])
-//        }
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
         
-        do {
-            try fetchedResultsController.performFetch()
-            self.trips = (fetchedResultsController.fetchedObjects as? [Trip])!
-            
-            if self.trips.count == 0 {
-                tableView.hidden = true
-            }
-        } catch {
-            NSLog("An error occurred: could not fetch Trip")
-        }
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.barTintColor = UIColor(rgba: Colors.LightBlue.rawValue)
+        
+        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+
         
         tableView.tableFooterView = UIView()
     }
@@ -67,91 +61,12 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return trips.count
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let trip = trips[indexPath.row]
-        
         let cell = tableView.dequeueReusableCellWithIdentifier("tripCell") as! TripTableViewCell
         
-        let outputDateFormatter = NSDateFormatter()
-        outputDateFormatter.dateFormat = "MMM dd"
-        
-        if let startDate = trip.startDate {
-            let startDateStr = outputDateFormatter.stringFromDate(startDate)
-            cell.durationLabel.text = startDateStr
-        }
-        
-        if let endDate = trip.endDate {
-            let endDateStr = outputDateFormatter.stringFromDate(endDate)
-            
-            if let durationLabelText = cell.durationLabel.text {
-                cell.durationLabel.text = durationLabelText + " - " + endDateStr
-            }
-        }
-        
-        cell.locationLabel.text = trip.destination
-        
         return cell
-    }
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-        if editingStyle == .Delete {
-            deleteTripIndexPath = indexPath
-            let tripToDelete = trips[indexPath.row]
-            confirmDelete(tripToDelete)
-        }
-    }
-    
-    func confirmDelete(trip: Trip) {
-        let alert = UIAlertController(title: "Delete trip", message: "Are you sure you want to permanently delete \(trip.destination!)?", preferredStyle: .ActionSheet)
-        
-        let DeleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: handleDeleteTrip)
-        let CancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: cancelDeleteTrip)
-        
-        alert.addAction(DeleteAction)
-        alert.addAction(CancelAction)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func handleDeleteTrip(alertAction: UIAlertAction!) -> Void {
-        if let indexPath = deleteTripIndexPath {
-            tableView.beginUpdates()
-            
-            trips.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-            
-            let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            
-            let context:NSManagedObjectContext = appDel.managedObjectContext
-            context.deleteObject(trips[indexPath.row] as NSManagedObject)
-            
-            trips.removeAtIndex(indexPath.row)
-            
-            do {
-                try context.save()
-            } catch {
-            }
-            
-            deleteTripIndexPath = nil
-            tableView.endUpdates()
-        }
-    }
-    
-    func cancelDeleteTrip(alertAction: UIAlertAction!) {
-        deleteTripIndexPath = nil
-    }
-    
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
-        NSLog("Successfully dismissed New Trip view controller")
-        
-        NSLog("User cancelled New Trip")
-        mixpanel?.track("Action Cancelled", properties: [
-            "New Trip View": "",
-            "time": NSDate()
-            ])
     }
 }

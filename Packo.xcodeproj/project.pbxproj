@@ -36,6 +36,7 @@
 		EBD91DD31C7522F700B7DA36 /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DD21C7522F700B7DA36 /* TripTableViewCell.swift */; };
 		EBD91DD51C75230600B7DA36 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DD41C75230600B7DA36 /* ItemTableViewCell.swift */; };
 		EBD91DD71C75254600B7DA36 /* Packo.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DD61C75254600B7DA36 /* Packo.xcdatamodel */; };
+		EBD91DDA1C7536A200B7DA36 /* NewItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DD91C7536A200B7DA36 /* NewItemTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,8 @@
 		EBD91DD21C7522F700B7DA36 /* TripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripTableViewCell.swift; path = Views/TripTableViewCell.swift; sourceTree = "<group>"; };
 		EBD91DD41C75230600B7DA36 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableViewCell.swift; path = Views/ItemTableViewCell.swift; sourceTree = "<group>"; };
 		EBD91DD61C75254600B7DA36 /* Packo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Packo.xcdatamodel; sourceTree = "<group>"; };
+		EBD91DD81C752EE000B7DA36 /* Packo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Packo-Bridging-Header.h"; sourceTree = "<group>"; };
+		EBD91DD91C7536A200B7DA36 /* NewItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewItemTableViewController.swift; path = Controllers/NewItemTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +181,7 @@
 				EBD91DA01C751C0A00B7DA36 /* Config.plist */,
 				EBD91DA61C751D4300B7DA36 /* InfoPlist.strings */,
 				EBD91DD61C75254600B7DA36 /* Packo.xcdatamodel */,
+				EBD91DD81C752EE000B7DA36 /* Packo-Bridging-Header.h */,
 			);
 			path = Packo;
 			sourceTree = "<group>";
@@ -204,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				EBD91D711C75181B00B7DA36 /* MainViewController.swift */,
+				EBD91DD91C7536A200B7DA36 /* NewItemTableViewController.swift */,
 				EBD91DC31C75221900B7DA36 /* ItemsViewController.swift */,
 				EBD91DBD1C7521A000B7DA36 /* TripsViewController.swift */,
 			);
@@ -460,6 +465,7 @@
 				EBD91DAC1C751DC400B7DA36 /* ForecastIO.swift in Sources */,
 				EBD91DCD1C7522BC00B7DA36 /* UIImageExtension.swift in Sources */,
 				EBD91DC01C7521C200B7DA36 /* Item.swift in Sources */,
+				EBD91DDA1C7536A200B7DA36 /* NewItemTableViewController.swift in Sources */,
 				EBD91DD71C75254600B7DA36 /* Packo.xcdatamodel in Sources */,
 				EBD91DB51C751E2500B7DA36 /* ShortcutIdentifier.swift in Sources */,
 				EBD91DCB1C7522AC00B7DA36 /* StringExtension.swift in Sources */,
@@ -615,6 +621,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Packo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.kickassapps.Packo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -627,6 +634,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Packo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.kickassapps.Packo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
