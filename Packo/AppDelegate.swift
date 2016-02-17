@@ -9,14 +9,42 @@
 import UIKit
 import CoreData
 
+import Mixpanel
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    // MARK: - Variables
     var window: UIWindow?
-
+    var mixpanel: Mixpanel!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        var config: NSDictionary?
+        
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        application.registerUserNotificationSettings(notificationSettings)
+        
+        if let path = NSBundle.mainBundle().pathForResource("Config", ofType: "plist") {
+            config = NSDictionary(contentsOfFile: path)
+        }
+        
+        if let dict = config, mixpanelAPIToken = dict.valueForKey("mixpanelToken") as? String {
+            
+            // Initialize Mixpanel
+            Mixpanel.sharedInstanceWithToken(mixpanelAPIToken)
+            mixpanel = Mixpanel.sharedInstance()
+        }
+        
+        mixpanel.track("App opened", properties: ["Time": NSDate()])
+        
+        // If a shortcut was launched, display its information and take the appropriate action
+        if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
+            handleShortCutItem(shortcutItem)
+            return false
+        }
+
         return true
     }
 
@@ -42,6 +70,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+    }
+    
+    // MARK: - Home Screen Quick Actions
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: Bool -> Void) {
+        completionHandler(handleShortCutItem(shortcutItem))
+    }
+    
+    func handleShortCutItem(shortcutItem: UIApplicationShortcutItem) -> Bool {
+        var handled = false
+        
+        // Verify that the provided `shortcutItem`'s `type` is one handled by the application.
+        guard ShortcutIdentifier(fullType: shortcutItem.type) != nil else { return false }
+        
+        guard let shortCutType = shortcutItem.type as String? else { return false }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        switch (shortCutType) {
+        case ShortcutIdentifier.Trips.type:
+            NSLog("3D Quick Action pressed: Trips")
+            mixpanel.track("QuickAction Triggered", properties: ["Action": "Trips"])
+            
+            let tabBarController = storyboard.instantiateViewControllerWithIdentifier("tabBarController") as! UITabBarController
+            
+            tabBarController.selectedIndex = 1;
+            
+            window!.rootViewController?.presentViewController(tabBarController, animated: true, completion: { () -> Void in
+            })
+            
+            handled = true
+            break
+        case ShortcutIdentifier.NewTrip.type:
+            NSLog("3D Quick Action pressed: New Trip")
+            mixpanel.track("QuickAction Triggered", properties: ["Action": "New Trip"])
+            
+            let newTripController = storyboard.instantiateViewControllerWithIdentifier("newTripNavigationController") as! UINavigationController
+            
+            window!.rootViewController?.presentViewController(newTripController, animated: true, completion: { () -> Void in
+            })
+            
+            handled = true
+            break
+        case ShortcutIdentifier.NewItem.type:
+            NSLog("3D Quick Action pressed: New Item")
+            mixpanel.track("QuickAction Triggered", properties: ["Action": "New Item"])
+            
+            let newItemController = storyboard.instantiateViewControllerWithIdentifier("newItemNavigationController") as! UINavigationController
+            
+            window!.rootViewController?.presentViewController(newItemController, animated: true, completion: { () -> Void in
+            })
+            
+            handled = true
+            break;
+        default:
+            break
+        }
+        
+        return handled
     }
 
     // MARK: - Core Data stack

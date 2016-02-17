@@ -1,0 +1,16 @@
+/* 
+  InfoPlist.strings
+  Packo
+
+  Created by Rodrigo Alves on 11/23/15.
+  Copyright © 2015 Kick Ass Apps. All rights reserved.
+*/
+
+shortcutTitle1 = "New Item";
+shortcutSubtitle1 = "Create a new item";
+
+shortcutTitle2 = "New Trip";
+shortcutSubtitle2 = "Create a new irip";
+
+shortcutTitle3 = "My Trips";
+shortcutSubtitle3 = "Browse all of your trips";

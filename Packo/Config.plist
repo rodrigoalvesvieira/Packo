@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>googleGeocodingAPIKey</key>
+	<string>AIzaSyCJgFRySC4kyvyj2sZe-ObqmTPjn_JysP0</string>
+	<key>forecastIOAPIKey</key>
+	<string>2e978c5a35d93ebd7a2f32fb8462069e</string>
+	<key>parseClientKey</key>
+	<string>wskdCusmwPJj8K79P4liQSnbhfH8T7DYAUuiOL23</string>
+	<key>parseApplicationId</key>
+	<string>iqbfKgeWUqZ6nYFPHmhsm5kBmCb4EELXibE37bgJ</string>
+	<key>mixpanelToken</key>
+	<string>f7da831fee38814afc134bcefbe35129</string>
+</dict>
+</plist>

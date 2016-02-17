@@ -1,0 +1,18 @@
+PODS:
+  - FSCalendar (1.8.1)
+  - Mixpanel (2.9.3):
+    - Mixpanel/Mixpanel (= 2.9.3)
+  - Mixpanel/Mixpanel (2.9.3)
+  - Taplytics (2.9.16)
+
+DEPENDENCIES:
+  - FSCalendar (~> 1.8)
+  - Mixpanel (~> 2.9)
+  - Taplytics (~> 2.9)
+
+SPEC CHECKSUMS:
+  FSCalendar: 8ffbacc9186241f2d33a04053dd8c68ca2f38771
+  Mixpanel: b9ff1c5d41fc07037d4b813bf2799c050ee3e49b
+  Taplytics: 8c37a61cf11a0ad4169f82a7ea347faf785d6d89
+
+COCOAPODS: 0.39.0
