@@ -80,4 +80,7 @@ class TripsViewController: UIViewController, NSFetchedResultsControllerDelegate 
         
         return cell
     }
+    
+    @IBAction func unwindToTripsViewController(segue: UIStoryboardSegue) {
+    }
 }
