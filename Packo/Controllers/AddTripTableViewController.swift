@@ -26,6 +26,7 @@ class NewTripTableViewController: UITableViewController, UINavigationControllerD
     let messageLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
     let dateFormatter = NSDateFormatter()
     let outputDateFormatter = NSDateFormatter()
+    let notificationCenter = NSNotificationCenter.defaultCenter()
     
     // MARK: - Variables
     var activityIndicator = UIActivityIndicatorView()
@@ -132,6 +133,8 @@ class NewTripTableViewController: UITableViewController, UINavigationControllerD
                     self.dismissViewControllerAnimated(true, completion: { () -> Void in
                         NSLog("New trip to \(newTrip.valueForKey("destination")!) saved")
                         
+                        self.notificationCenter.postNotificationName("newTripAdded", object: nil)
+
                         self.mixpanel?.track("Saved Object",
                             properties: [
                                 "Type": Trip.entityName(),

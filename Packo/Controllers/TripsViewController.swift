@@ -65,6 +65,8 @@ class TripsViewController: UIViewController, NSFetchedResultsControllerDelegate 
         } catch {
             NSLog("An error occurred: could not fetch Trip")
         }
+        
+        notificationCenter.addObserver(self, selector: "newTripAdded", name: "newTripAdded", object: nil)
 
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
@@ -73,6 +75,18 @@ class TripsViewController: UIViewController, NSFetchedResultsControllerDelegate 
     deinit {
         self.tableView.emptyDataSetSource = nil
         self.tableView.emptyDataSetDelegate = nil
+    }
+    
+    func newTripAdded() {
+        NSLog("Reloading trips table view data.")
+        
+        do {
+            try fetchedResultsController.performFetch()
+            self.trips = (fetchedResultsController.fetchedObjects as? [Trip])!
+            
+            self.tableView.reloadData()
+        } catch {
+        }
     }
     
     // MARK: - UITableViewDataSource delegate
