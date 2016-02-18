@@ -27,7 +27,6 @@
 		EBD91DB51C751E2500B7DA36 /* ShortcutIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DB41C751E2500B7DA36 /* ShortcutIdentifier.swift */; };
 		EBD91DB71C751E3900B7DA36 /* TemperatureScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DB61C751E3900B7DA36 /* TemperatureScale.swift */; };
 		EBD91DB91C751E4500B7DA36 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DB81C751E4500B7DA36 /* Colors.swift */; };
-		EBD91DBC1C751EB100B7DA36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBD91DBB1C751EB100B7DA36 /* LaunchScreen.storyboard */; };
 		EBD91DBE1C7521A000B7DA36 /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DBD1C7521A000B7DA36 /* TripsViewController.swift */; };
 		EBD91DC01C7521C200B7DA36 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DBF1C7521C200B7DA36 /* Item.swift */; };
 		EBD91DC21C7521F300B7DA36 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DC11C7521F300B7DA36 /* Trip.swift */; };
@@ -40,6 +39,7 @@
 		EBD91DD31C7522F700B7DA36 /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DD21C7522F700B7DA36 /* TripTableViewCell.swift */; };
 		EBD91DD51C75230600B7DA36 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DD41C75230600B7DA36 /* ItemTableViewCell.swift */; };
 		EBD91DDA1C7536A200B7DA36 /* NewItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DD91C7536A200B7DA36 /* NewItemTableViewController.swift */; };
+		EBF342101C75DEDD0047F5DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBF3420F1C75DEDD0047F5DB /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,7 +88,6 @@
 		EBD91DB41C751E2500B7DA36 /* ShortcutIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShortcutIdentifier.swift; path = Enums/ShortcutIdentifier.swift; sourceTree = "<group>"; };
 		EBD91DB61C751E3900B7DA36 /* TemperatureScale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TemperatureScale.swift; path = Enums/TemperatureScale.swift; sourceTree = "<group>"; };
 		EBD91DB81C751E4500B7DA36 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = Enums/Colors.swift; sourceTree = "<group>"; };
-		EBD91DBA1C751EB100B7DA36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EBD91DBD1C7521A000B7DA36 /* TripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripsViewController.swift; path = Controllers/TripsViewController.swift; sourceTree = "<group>"; };
 		EBD91DBF1C7521C200B7DA36 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Item.swift; path = Models/Item.swift; sourceTree = "<group>"; };
 		EBD91DC11C7521F300B7DA36 /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Trip.swift; path = Models/Trip.swift; sourceTree = "<group>"; };
@@ -102,6 +101,7 @@
 		EBD91DD41C75230600B7DA36 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableViewCell.swift; path = Views/ItemTableViewCell.swift; sourceTree = "<group>"; };
 		EBD91DD81C752EE000B7DA36 /* Packo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Packo-Bridging-Header.h"; sourceTree = "<group>"; };
 		EBD91DD91C7536A200B7DA36 /* NewItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewItemTableViewController.swift; path = Controllers/NewItemTableViewController.swift; sourceTree = "<group>"; };
+		EBF3420F1C75DEDD0047F5DB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +181,7 @@
 				EBD91DA31C751C3B00B7DA36 /* Models */,
 				EBD91DA21C751C3400B7DA36 /* Controllers */,
 				EBD91D731C75181C00B7DA36 /* Main.storyboard */,
-				EBD91DBB1C751EB100B7DA36 /* LaunchScreen.storyboard */,
+				EBF3420F1C75DEDD0047F5DB /* LaunchScreen.storyboard */,
 				EBD91D791C75181C00B7DA36 /* Assets.xcassets */,
 				EBD91D7E1C75181C00B7DA36 /* Info.plist */,
 				EBD91DA01C751C0A00B7DA36 /* Config.plist */,
@@ -392,7 +392,7 @@
 				EBD91DA11C751C0A00B7DA36 /* Config.plist in Resources */,
 				EBD91D7A1C75181C00B7DA36 /* Assets.xcassets in Resources */,
 				EBD91D751C75181C00B7DA36 /* Main.storyboard in Resources */,
-				EBD91DBC1C751EB100B7DA36 /* LaunchScreen.storyboard in Resources */,
+				EBF342101C75DEDD0047F5DB /* LaunchScreen.storyboard in Resources */,
 				EBD91DA71C751D4300B7DA36 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,15 +532,6 @@
 				EBD91D741C75181C00B7DA36 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		EBD91DBB1C751EB100B7DA36 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EBD91DBA1C751EB100B7DA36 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			path = "../../Packo-old/Packo";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
