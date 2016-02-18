@@ -7,9 +7,9 @@
 //
 
 enum Colors : String {
-    case Button = "#2a6697"
     case ButtonDark = "#1f4b6f"
-    case FormField = "#7c858d"
+    case Grey = "#7c858d"
+    case DarkBlue = "#2a6697"
     case LightGray = "#F2F2F2"
     case LightBlue = "#94C0E7"
 }

@@ -50,7 +50,7 @@ class NewItemTableViewController: UITableViewController, UINavigationControllerD
         
         tableView.addGestureRecognizer(swipeRight)
         
-        let buttonColor = UIColor(rgba: Colors.Button.rawValue)
+        let buttonColor = UIColor(rgba: Colors.DarkBlue.rawValue)
         
         cancelButton.tintColor = buttonColor
         saveButton.tintColor = buttonColor

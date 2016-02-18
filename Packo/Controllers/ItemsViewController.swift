@@ -77,10 +77,16 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         
         self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 20)!]
+        
+        self.navigationController!.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 20)!,
+            NSForegroundColorAttributeName: UIColor(rgba: Colors.DarkBlue.rawValue)
+        ]
 
         UIApplication.sharedApplication().statusBarStyle = .Default
         
         notificationCenter.addObserver(self, selector: "newItemAdded", name: "newItemAdded", object: nil)
+        notificationCenter.addObserver(self, selector: "newTripAdded", name: "newTripAdded", object: nil)
 
         var config: NSDictionary?
         if let path = NSBundle.mainBundle().pathForResource("Config", ofType: "plist") {
@@ -98,17 +104,7 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 if let dict = config, geocodingAPIKey = dict.valueForKey("googleGeocodingAPIKey") as? String, forecastIOAPIKey = dict.valueForKey("forecastIOAPIKey") as? String {
                     
-                    let geocoder = Geocoder(apiKey: geocodingAPIKey)
-                    
-                    if let geolocation = geocoder.geocode(place: currentTrip.destination) {
-                        let forecastIO = ForecastIO(apiKey: forecastIOAPIKey)
-                        
-                        if let currentWeather = forecastIO.getCurrentWeather("\(geolocation.latitude!),\(geolocation.longitude!)") {
-                            
-                            currentTemperature = "\(currentWeather.temperature)"
-                            currentIconString = currentWeather.iconString
-                        }
-                    }
+                    self.fetchWeatherInfo()
                     
                     do {
                         try fetchedItemsResultsController.performFetch()
@@ -145,8 +141,55 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             try fetchedItemsResultsController.performFetch()
             self.items = (fetchedItemsResultsController.fetchedObjects as? [Item])!
             
-            self.tableView.reloadData()
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                self.tableView.reloadData()
+            }
         } catch {
+        }
+    }
+    
+    func newTripAdded() {
+        NSLog("Reloading items table view for new trip.")
+        
+        do {
+            try fetchedResultsController.performFetch()
+            let trips = fetchedResultsController.fetchedObjects as? [Trip]
+            
+            if let currentTrip = trips!.first {
+                trip = currentTrip
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.tableView.reloadData()
+                    self.fetchWeatherInfo()
+                }
+            }
+            
+        } catch {
+        }
+    }
+    
+    func fetchWeatherInfo() {
+        var config: NSDictionary?
+        if let path = NSBundle.mainBundle().pathForResource("Config", ofType: "plist") {
+            config = NSDictionary(contentsOfFile: path)
+        }
+        
+        if let dict = config, geocodingAPIKey = dict.valueForKey("googleGeocodingAPIKey") as? String, forecastIOAPIKey = dict.valueForKey("forecastIOAPIKey") as? String {
+            
+            let geocoder = Geocoder(apiKey: geocodingAPIKey)
+            
+            if let currentTrip = trip {
+                if let geolocation = geocoder.geocode(place: currentTrip.destination) {
+                    let forecastIO = ForecastIO(apiKey: forecastIOAPIKey)
+                    
+                    if let currentWeather = forecastIO.getCurrentWeather("\(geolocation.latitude!),\(geolocation.longitude!)") {
+                        
+                        currentTemperature = "\(currentWeather.temperature)"
+                        currentIconString = currentWeather.iconString
+                    }
+                }
+            }
         }
     }
     
@@ -331,6 +374,20 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func cancelDeleteItem(alertAction: UIAlertAction!) {
         deleteItemIndexPath = nil
+    }
+    
+    @IBAction func createTripOrItemButtonPress(sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+        let newItemController = storyboard.instantiateViewControllerWithIdentifier("NewItemTableViewNavigationController") as! UINavigationController
+        
+        let newTripController = storyboard.instantiateViewControllerWithIdentifier("NewTripTableViewNavigationController") as! UINavigationController
+        
+        if let _ = trip {
+            self.presentViewController(newItemController, animated: true, completion: nil)
+        } else {
+            self.presentViewController(newTripController, animated: true, completion: nil)
+        }
     }
     
     @IBAction func unwindToItemsViewController(segue: UIStoryboardSegue) {

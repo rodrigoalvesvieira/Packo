@@ -9,13 +9,15 @@
 import DZNEmptyDataSet
 
 extension TripsViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
-    
+
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: "Minhas viagens")
+        let attributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 28)!]
+        return NSAttributedString(string: "My trips", attributes: attributes)
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: "Você ainda não possui uma viagem marcada 😞")
+        let attributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 18)!]
+        return NSAttributedString(string: "You don't have any trip planned yet 😞", attributes: attributes)
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {

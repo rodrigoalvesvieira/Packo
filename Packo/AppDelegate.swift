@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 import Mixpanel
+import Taplytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

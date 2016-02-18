@@ -54,8 +54,8 @@ class ForecastIO {
                     
                     weatherInfo = Weather(weatherDictionary: weatherDictionary)
                     
-                    NSLog("Successfully fetched weather info")
-                    print(weatherInfo)
+                    //NSLog("Successfully fetched weather info")
+                    //print(weatherInfo)
                     
                     return weatherInfo
                 }

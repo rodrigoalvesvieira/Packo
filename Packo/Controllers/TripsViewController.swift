@@ -48,14 +48,15 @@ class TripsViewController: UIViewController, NSFetchedResultsControllerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 20)!]
-
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.barTintColor = UIColor(rgba: Colors.LightBlue.rawValue)
         
-        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        self.navigationController!.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 20)!,
+            NSForegroundColorAttributeName: UIColor.whiteColor()
+        ]
 
         tableView.tableFooterView = UIView()
         
@@ -84,7 +85,9 @@ class TripsViewController: UIViewController, NSFetchedResultsControllerDelegate 
             try fetchedResultsController.performFetch()
             self.trips = (fetchedResultsController.fetchedObjects as? [Trip])!
             
-            self.tableView.reloadData()
+            dispatch_async(dispatch_get_main_queue()) {
+                self.tableView.reloadData()
+            }
         } catch {
         }
     }

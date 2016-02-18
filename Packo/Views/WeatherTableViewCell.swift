@@ -20,12 +20,12 @@ class WeatherTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        let textColor = UIColor(rgba: "#2a6697")
+        let textColor = UIColor(rgba: Colors.DarkBlue.rawValue)
         
         destinationLabel.textColor = textColor
         temperatureLabel.textColor = textColor
         
-        durationLabel.textColor = UIColor(rgba: "#7c858d")
+        durationLabel.textColor = UIColor(rgba: Colors.Grey.rawValue)
         
         weatherIcon.image = UIImage(named: "default")
     }

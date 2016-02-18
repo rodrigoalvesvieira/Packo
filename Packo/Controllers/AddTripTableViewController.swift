@@ -41,6 +41,8 @@ class NewTripTableViewController: UITableViewController, UINavigationControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 20)!]
+
         dateFormatter.dateFormat = "yyyy-MM-dd"
         outputDateFormatter.dateFormat = "E, dd MMM yyyy"
         
