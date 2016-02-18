@@ -78,9 +78,43 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 20)!]
 
         UIApplication.sharedApplication().statusBarStyle = .Default
-        
+
+        var config: NSDictionary?
+
         do {
             try fetchedResultsController.performFetch()
+            let trips = fetchedResultsController.fetchedObjects as? [Trip]
+            
+            if let currentTrip = trips!.first {
+                trip = currentTrip
+                
+                NSLog("Current trip found: \(currentTrip.destination as String!)")
+                
+                if let dict = config, geocodingAPIKey = dict.valueForKey("googleGeocodingAPIKey") as? String, forecastIOAPIKey = dict.valueForKey("forecastIOAPIKey") as? String {
+                    
+                    let geocoder = Geocoder(apiKey: geocodingAPIKey)
+                    
+                    if let geolocation = geocoder.geocode(place: currentTrip.destination) {
+                        let forecastIO = ForecastIO(apiKey: forecastIOAPIKey)
+                        
+                        if let currentWeather = forecastIO.getCurrentWeather("\(geolocation.latitude!),\(geolocation.longitude!)") {
+                            
+                            currentTemperature = "\(currentWeather.temperature)"
+                            currentIconString = currentWeather.iconString
+                        }
+                    }
+                    
+                    do {
+                        try fetchedItemsResultsController.performFetch()
+                        self.items = (fetchedItemsResultsController.fetchedObjects as? [Item])!
+                        
+                        NSLog("Total of \(self.items.count) items found.")
+                    }
+                }
+            } else {
+                NSLog("No trip was found!")
+            }
+            
         } catch {
             
         }
