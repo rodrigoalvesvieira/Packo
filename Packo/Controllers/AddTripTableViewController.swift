@@ -62,6 +62,9 @@ class NewTripTableViewController: UITableViewController, UINavigationControllerD
         startDateLabel.backgroundColor = UIColor(rgba: Colors.LightGray.rawValue)
         
         calendar.allowsMultipleSelection = true
+        
+        self.mixpanel = Mixpanel.sharedInstance()
+        self.mixpanel?.track("View Controller Loaded", properties: ["View Controller Name": "AddTripTableViewController"])
     }
     
     func progressBarDisplayer(msg: String,_ indicator: Bool) {
@@ -90,10 +93,12 @@ class NewTripTableViewController: UITableViewController, UINavigationControllerD
         if (selectingStartDate) {
             if (self.destinationTextField.text?.length > Trip.minDestinationLength) { saveButton.enabled = true }
             
+            self.startDate = date
             startDateLabel.text = outputDateFormatter.stringFromDate(date)
             
             selectingStartDate = false
         } else {
+            self.endDate = date
             endDateLabel.text = outputDateFormatter.stringFromDate(date)
             endDateLabel.backgroundColor = UIColor(rgba: Colors.LightGray.rawValue)
         }
@@ -134,7 +139,6 @@ class NewTripTableViewController: UITableViewController, UINavigationControllerD
                     try newTrip.managedObjectContext?.save()
                     self.dismissViewControllerAnimated(true, completion: { () -> Void in
                         NSLog("New trip to \(newTrip.valueForKey("destination")!) saved")
-                        
                         self.notificationCenter.postNotificationName("newTripAdded", object: nil)
 
                         self.mixpanel?.track("Saved Object",

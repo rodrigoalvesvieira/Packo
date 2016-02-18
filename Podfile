@@ -3,7 +3,6 @@ use_frameworks!
 
 target 'Packo' do
   # Analytics stuff
-  pod 'Taplytics', '~> 2.9'
   pod 'Mixpanel', '~> 2.9'
 
   # UI/UX Stuff

@@ -71,6 +71,9 @@ class TripsViewController: UIViewController, NSFetchedResultsControllerDelegate 
 
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
+        
+        self.mixpanel = Mixpanel.sharedInstance()
+        self.mixpanel?.track("View Controller Loaded", properties: ["View Controller Name": "TripsViewController"])
     }
     
     deinit {
@@ -99,6 +102,10 @@ class TripsViewController: UIViewController, NSFetchedResultsControllerDelegate 
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return trips.count
+    }
+    
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return .None
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

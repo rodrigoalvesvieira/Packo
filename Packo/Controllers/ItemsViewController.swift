@@ -127,6 +127,9 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
+        
+        self.mixpanel = Mixpanel.sharedInstance()
+        self.mixpanel?.track("View Controller Loaded", properties: ["View Controller Name": "ItemsViewController"])
     }
     
     deinit {
@@ -262,8 +265,10 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        if indexPath.row == 0 { return .None }
-        return .Delete
+        //if indexPath.row == 0 { return .None }
+        //return .Delete
+        
+        return .None
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -379,9 +384,9 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBAction func createTripOrItemButtonPress(sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
-        let newItemController = storyboard.instantiateViewControllerWithIdentifier("NewItemTableViewNavigationController") as! UINavigationController
+        let newItemController = storyboard.instantiateViewControllerWithIdentifier("AddItemTableViewNavigationController") as! UINavigationController
         
-        let newTripController = storyboard.instantiateViewControllerWithIdentifier("NewTripTableViewNavigationController") as! UINavigationController
+        let newTripController = storyboard.instantiateViewControllerWithIdentifier("AddTripTableViewNavigationController") as! UINavigationController
         
         if let _ = trip {
             self.presentViewController(newItemController, animated: true, completion: nil)

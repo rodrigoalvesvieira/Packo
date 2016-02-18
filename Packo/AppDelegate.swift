@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 
 import Mixpanel
-import Taplytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,7 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let notificationCenter = NSNotificationCenter.defaultCenter()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        BuddyBuildSDK.setup()
+        
+        // BuddyBuildSDK.setup()
         
         // Override point for customization after application launch.
         
@@ -62,6 +62,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        mixpanel.track("Enter Background", properties: ["Time": NSDate()])
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -110,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("3D Quick Action pressed: New Trip")
             mixpanel.track("QuickAction Triggered", properties: ["Action": "New Trip"])
             
-            let newItemController = storyboard.instantiateViewControllerWithIdentifier("NewTripTableViewNavigationController") as! UINavigationController
+            let newItemController = storyboard.instantiateViewControllerWithIdentifier("AddTripTableViewNavigationController") as! UINavigationController
             
             window!.rootViewController?.presentViewController(newItemController, animated: true, completion: { () -> Void in
             })
@@ -121,7 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("3D Quick Action pressed: New Item")
             mixpanel.track("QuickAction Triggered", properties: ["Action": "New Item"])
             
-            let newItemController = storyboard.instantiateViewControllerWithIdentifier("NewItemTableViewNavigationController") as! UINavigationController
+            let newItemController = storyboard.instantiateViewControllerWithIdentifier("AddItemTableViewNavigationController") as! UINavigationController
             
             window!.rootViewController?.presentViewController(newItemController, animated: true, completion: { () -> Void in
             })
@@ -134,7 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return handled
     }
-
+    
     // MARK: - Core Data stack
 
     lazy var applicationDocumentsDirectory: NSURL = {

@@ -44,7 +44,7 @@
 		EBD91DD11C7522D900B7DA36 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DD01C7522D900B7DA36 /* UIViewExtension.swift */; };
 		EBD91DD31C7522F700B7DA36 /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DD21C7522F700B7DA36 /* TripTableViewCell.swift */; };
 		EBD91DD51C75230600B7DA36 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DD41C75230600B7DA36 /* ItemTableViewCell.swift */; };
-		EBD91DDA1C7536A200B7DA36 /* NewItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DD91C7536A200B7DA36 /* NewItemTableViewController.swift */; };
+		EBD91DDA1C7536A200B7DA36 /* AddItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DD91C7536A200B7DA36 /* AddItemTableViewController.swift */; };
 		EBF342101C75DEDD0047F5DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBF3420F1C75DEDD0047F5DB /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -113,7 +113,7 @@
 		EBD91DD21C7522F700B7DA36 /* TripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripTableViewCell.swift; path = Views/TripTableViewCell.swift; sourceTree = "<group>"; };
 		EBD91DD41C75230600B7DA36 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableViewCell.swift; path = Views/ItemTableViewCell.swift; sourceTree = "<group>"; };
 		EBD91DD81C752EE000B7DA36 /* Packo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Packo-Bridging-Header.h"; sourceTree = "<group>"; };
-		EBD91DD91C7536A200B7DA36 /* NewItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewItemTableViewController.swift; path = Controllers/NewItemTableViewController.swift; sourceTree = "<group>"; };
+		EBD91DD91C7536A200B7DA36 /* AddItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddItemTableViewController.swift; path = Controllers/AddItemTableViewController.swift; sourceTree = "<group>"; };
 		EBF3420F1C75DEDD0047F5DB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -240,7 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				EBD91D711C75181B00B7DA36 /* MainViewController.swift */,
-				EBD91DD91C7536A200B7DA36 /* NewItemTableViewController.swift */,
+				EBD91DD91C7536A200B7DA36 /* AddItemTableViewController.swift */,
 				EBD91DC31C75221900B7DA36 /* ItemsViewController.swift */,
 				EB84B0D11C759164004EA581 /* AddTripTableViewController.swift */,
 				EBD91DBD1C7521A000B7DA36 /* TripsViewController.swift */,
@@ -500,7 +500,7 @@
 				EBD91DAC1C751DC400B7DA36 /* ForecastIO.swift in Sources */,
 				EBD91DCD1C7522BC00B7DA36 /* UIImageExtension.swift in Sources */,
 				EBD91DC01C7521C200B7DA36 /* Item.swift in Sources */,
-				EBD91DDA1C7536A200B7DA36 /* NewItemTableViewController.swift in Sources */,
+				EBD91DDA1C7536A200B7DA36 /* AddItemTableViewController.swift in Sources */,
 				EBD91DB51C751E2500B7DA36 /* ShortcutIdentifier.swift in Sources */,
 				EB6099E51C758C2E00B73777 /* ItemsViewControllerExtension.swift in Sources */,
 				EBD91DCB1C7522AC00B7DA36 /* StringExtension.swift in Sources */,
@@ -658,7 +658,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.kickassapps.Packo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Packo/Packo-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -676,7 +676,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.kickassapps.Packo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Packo/Packo-Bridging-Header.h";
 			};
 			name = Release;
 		};

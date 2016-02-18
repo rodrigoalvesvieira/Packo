@@ -10,8 +10,5 @@
 #define Packo_Pack_Bridging_Header_h
 
 #import "Mixpanel/Mixpanel.h"
-#import <Taplytics/Taplytics.h>
-
-#import "UIScrollView+EmptyDataSet.h"
 
 #endif

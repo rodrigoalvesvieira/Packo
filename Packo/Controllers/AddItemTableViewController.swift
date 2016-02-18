@@ -11,7 +11,7 @@ import CoreData
 import CoreSpotlight
 import Mixpanel
 
-class NewItemTableViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
+class AddItemTableViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
     
     // MARK: - Outlets
     @IBOutlet weak var imageView: UIImageView!
@@ -61,6 +61,9 @@ class NewItemTableViewController: UITableViewController, UINavigationControllerD
         
         // Hide tableView separators
         tableView.separatorStyle = .None
+        
+        self.mixpanel = Mixpanel.sharedInstance()
+        self.mixpanel?.track("View Controller Loaded", properties: ["View Controller Name": "AddItemTableViewController"])
     }
     
     override func didReceiveMemoryWarning() {

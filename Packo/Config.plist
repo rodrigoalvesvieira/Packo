@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>taplyticsAPIKey</key>
-	<string>c75905f77cbc849c0c3c6c082738c2f942f72ece</string>
 	<key>googleGeocodingAPIKey</key>
 	<string>AIzaSyCJgFRySC4kyvyj2sZe-ObqmTPjn_JysP0</string>
 	<key>forecastIOAPIKey</key>
