@@ -1,5 +1,7 @@
 # Packo iOS
 
+[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=56c557093cca6401008cda1d&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/56c557093cca6401008cda1d/build/latest)
+
 App Store description:
 
 > Ever went on a trip and forgot to pack your phone charger? Went back home and left something important behind?
