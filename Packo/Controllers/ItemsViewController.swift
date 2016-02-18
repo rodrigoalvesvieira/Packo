@@ -80,6 +80,9 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         UIApplication.sharedApplication().statusBarStyle = .Default
 
         var config: NSDictionary?
+        if let path = NSBundle.mainBundle().pathForResource("Config", ofType: "plist") {
+            config = NSDictionary(contentsOfFile: path)
+        }
 
         do {
             try fetchedResultsController.performFetch()
@@ -152,14 +155,167 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        if let _ = trip {
+            return items.count + 1
+        } else {
+            return items.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("weatherCell") as! WeatherTableViewCell
+        if (indexPath.row == 0) {
+            let cell = tableView.dequeueReusableCellWithIdentifier("weatherCell") as! WeatherTableViewCell
+            cell.destinationLabel.text = trip?.destination
+            cell.durationLabel.text = outputDateFormatter.stringFromDate((trip?.startDate)!)
+            
+            if let endDate = trip?.endDate {
+                let endDateStr = outputDateFormatter.stringFromDate(endDate)
+                
+                if let durationLabelText = cell.durationLabel.text {
+                    cell.durationLabel.text = durationLabelText + " - " + endDateStr
+                }
+            }
+            
+            if let rawTemperature = currentTemperature, temperature = Double(rawTemperature) {
+                cell.temperatureLabel.text = "\(Int(temperature))"
+            }
+            
+            cell.weatherIcon.image = UIImage(named: currentIconString)
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("itemCell") as! ItemTableViewCell
+            tableView.rowHeight = 80
+            
+            let item = items[indexPath.row - 1]
+            cell.itemNameLabel.text = item.name
+            
+            cell.thumbnailImageView.image = UIImage(data: item.picture, scale: 1.0)?.circle
+            cell.thumbnailImageView.layer.borderWidth = 1.0
+            cell.thumbnailImageView.layer.masksToBounds = false
+            
+            cell.thumbnailImageView.layer.borderColor = UIColor.whiteColor().CGColor
+            cell.thumbnailImageView.layer.cornerRadius = cell.thumbnailImageView.frame.size.width / 2
+            cell.thumbnailImageView.clipsToBounds = true
+            
+            return cell
+        }
+    }
+    
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        if indexPath.row == 0 { return .None }
+        return .Delete
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
-        return cell
+        if editingStyle == .Delete {
+            deleteItemIndexPath = NSIndexPath(forRow: indexPath.row, inSection: 1)
+            
+            let itemToDelete = items[indexPath.row - 1]
+            confirmDelete(itemToDelete)
+        }
+    }
+    
+    ///  Returns `true` when there is at least one item available. Returns `false` otherwise.
+    ///
+    func hasZeroItems() -> Bool {
+        return items.count == 0
+    }
+    
+    func getCurrentWeatherData() -> Void {
+        var config: NSDictionary?
+        
+        if let path = NSBundle.mainBundle().pathForResource("Config", ofType: "plist") {
+            config = NSDictionary(contentsOfFile: path)
+        }
+        
+        if let dict = config, forecastIOapiKey = dict.valueForKey("forecastIOAPIKey") as? String, googleGeocodingAPIKey = dict.valueForKey("googleGeocodingAPIKey") as? String {
+            
+            let geocoder = Geocoder(apiKey: googleGeocodingAPIKey)
+            
+            if let geoInfo = geocoder.geocode(place: trip?.destination) {
+                let coordinates = geoInfo.toString()
+                
+                NSLog("Fetched coordinates for \(geoInfo.locationName) are \(coordinates)")
+                
+                let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(forecastIOapiKey)/")
+                let forecastURL = NSURL(string: coordinates, relativeToURL: baseURL)
+                
+                let sharedSession = NSURLSession.sharedSession()
+                let downloadTask: NSURLSessionDownloadTask = sharedSession.downloadTaskWithURL(forecastURL!, completionHandler: { (location: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
+                    if error == nil {
+                        let dataObject = NSData(contentsOfURL: location!)
+                        
+                        if let weatherDictionary: NSDictionary = (try? NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as? NSDictionary {
+                            
+                            let currentWeather = Weather(weatherDictionary: weatherDictionary)
+                            
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                self.currentTemperature = "\(currentWeather.toCelsius())"
+                                self.currentIconString = currentWeather.iconString
+                                
+                                NSLog("Icon string is \(self.currentIconString)")
+                            })
+                        }
+                        
+                    } else {
+                        let networkIssueController = UIAlertController(title: "Error", message: "Unable to load data, conectivity error", preferredStyle: .Alert)
+                        let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        networkIssueController.addAction(okButton)
+                        let cancelButton = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                        networkIssueController.addAction(cancelButton)
+                        
+                        self.presentViewController(networkIssueController, animated: true, completion: nil)
+                        
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        })
+                    }
+                })
+                
+                downloadTask.resume()
+            }
+        }
+    }
+    
+    func confirmDelete(item: Item) {
+        let alert = UIAlertController(title: "Delete item", message: "Are you sure you want to permanently delete \(item.name!)?", preferredStyle: .ActionSheet)
+        
+        let DeleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: handleDeleteItem)
+        let CancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: cancelDeleteItem)
+        
+        alert.addAction(DeleteAction)
+        alert.addAction(CancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
+    func handleDeleteItem(alertAction: UIAlertAction!) -> Void {
+        if let indexPath = deleteItemIndexPath {
+            tableView.beginUpdates()
+            
+            let appDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            let context:NSManagedObjectContext = appDel.managedObjectContext
+            context.deleteObject(items[indexPath.row - 1] as NSManagedObject)
+            
+            do {
+                try context.save()
+                
+                items.removeAtIndex(indexPath.row - 1)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            } catch {
+            }
+            
+            deleteItemIndexPath = nil
+            
+            tableView.endUpdates()
+        }
+    }
+    
+    func cancelDeleteItem(alertAction: UIAlertAction!) {
+        deleteItemIndexPath = nil
     }
     
     @IBAction func unwindToItemsViewController(segue: UIStoryboardSegue) {
