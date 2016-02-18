@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		02180E7D19ABCA4A27CBF1A2 /* Pods_Packo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 289DFA2E93F8B2ACFBC2819F /* Pods_Packo.framework */; };
+		EB6099E51C758C2E00B73777 /* ItemsViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6099E41C758C2E00B73777 /* ItemsViewControllerExtension.swift */; };
+		EB6099E71C758D7A00B73777 /* TripsViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6099E61C758D7A00B73777 /* TripsViewControllerExtension.swift */; };
 		EBD91D701C75181B00B7DA36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91D6F1C75181B00B7DA36 /* AppDelegate.swift */; };
 		EBD91D721C75181B00B7DA36 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91D711C75181B00B7DA36 /* MainViewController.swift */; };
 		EBD91D751C75181C00B7DA36 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBD91D731C75181C00B7DA36 /* Main.storyboard */; };
@@ -60,6 +62,8 @@
 		289DFA2E93F8B2ACFBC2819F /* Pods_Packo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Packo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EF8B9027746FEB59AF27960 /* Pods-Packo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Packo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Packo/Pods-Packo.release.xcconfig"; sourceTree = "<group>"; };
 		58089CE39A60888C5960FEFC /* Pods-Packo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Packo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Packo/Pods-Packo.debug.xcconfig"; sourceTree = "<group>"; };
+		EB6099E41C758C2E00B73777 /* ItemsViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemsViewControllerExtension.swift; path = Extensions/ItemsViewControllerExtension.swift; sourceTree = "<group>"; };
+		EB6099E61C758D7A00B73777 /* TripsViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripsViewControllerExtension.swift; path = Extensions/TripsViewControllerExtension.swift; sourceTree = "<group>"; };
 		EBD91D6C1C75181B00B7DA36 /* Packo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Packo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD91D6F1C75181B00B7DA36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBD91D711C75181B00B7DA36 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = Controllers/MainViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +243,8 @@
 			isa = PBXGroup;
 			children = (
 				EBD91DC81C75229900B7DA36 /* UIColorExtension.swift */,
+				EB6099E41C758C2E00B73777 /* ItemsViewControllerExtension.swift */,
+				EB6099E61C758D7A00B73777 /* TripsViewControllerExtension.swift */,
 				EBD91DCA1C7522AC00B7DA36 /* StringExtension.swift */,
 				EBD91DD01C7522D900B7DA36 /* UIViewExtension.swift */,
 				EBD91DCC1C7522BC00B7DA36 /* UIImageExtension.swift */,
@@ -468,9 +474,11 @@
 				EBD91DDA1C7536A200B7DA36 /* NewItemTableViewController.swift in Sources */,
 				EBD91DD71C75254600B7DA36 /* Packo.xcdatamodel in Sources */,
 				EBD91DB51C751E2500B7DA36 /* ShortcutIdentifier.swift in Sources */,
+				EB6099E51C758C2E00B73777 /* ItemsViewControllerExtension.swift in Sources */,
 				EBD91DCB1C7522AC00B7DA36 /* StringExtension.swift in Sources */,
 				EBD91DC21C7521F300B7DA36 /* Trip.swift in Sources */,
 				EBD91DB11C751DFA00B7DA36 /* IDGenerator.swift in Sources */,
+				EB6099E71C758D7A00B73777 /* TripsViewControllerExtension.swift in Sources */,
 				EBD91DAA1C751DB100B7DA36 /* Geocoder.swift in Sources */,
 				EBD91DD11C7522D900B7DA36 /* UIViewExtension.swift in Sources */,
 				EBD91DC91C75229900B7DA36 /* UIColorExtension.swift in Sources */,

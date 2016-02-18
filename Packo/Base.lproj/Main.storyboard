@@ -226,7 +226,7 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eqp-7q-c0j">
                             <color key="tintColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
                             <connections>
-                                <segue destination="xId-xr-YAq" kind="unwind" unwindAction="unwindToHomeScreen:" id="BhP-Md-QYg"/>
+                                <segue destination="xId-xr-YAq" kind="unwind" unwindAction="unwindToItemsViewController:" id="e1O-VM-f6J"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" id="Ogl-mA-mee">

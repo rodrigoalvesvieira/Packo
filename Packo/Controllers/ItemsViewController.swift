@@ -11,6 +11,8 @@ import CoreData
 
 import Mixpanel
 
+import DZNEmptyDataSet
+
 class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
     // MARK: - Outlets
@@ -73,11 +75,21 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 20)!]
+
         UIApplication.sharedApplication().statusBarStyle = .Default
         
         outputDateFormatter.dateFormat = "MMM dd"
         
         tableView.tableFooterView = UIView()
+        
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
+    }
+    
+    deinit {
+        self.tableView.emptyDataSetSource = nil
+        self.tableView.emptyDataSetDelegate = nil
     }
     
     override func didReceiveMemoryWarning() {
@@ -108,5 +120,8 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCellWithIdentifier("weatherCell") as! WeatherTableViewCell
         
         return cell
+    }
+    
+    @IBAction func unwindToItemsViewController(segue: UIStoryboardSegue) {
     }
 }

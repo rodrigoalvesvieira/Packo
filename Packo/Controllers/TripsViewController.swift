@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 import Mixpanel
+import DZNEmptyDataSet
 
 class TripsViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
@@ -44,6 +45,8 @@ class TripsViewController: UIViewController, NSFetchedResultsControllerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 20)!]
+
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
@@ -53,6 +56,14 @@ class TripsViewController: UIViewController, NSFetchedResultsControllerDelegate 
 
         
         tableView.tableFooterView = UIView()
+        
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
+    }
+    
+    deinit {
+        self.tableView.emptyDataSetSource = nil
+        self.tableView.emptyDataSetDelegate = nil
     }
     
     // MARK: - UITableViewDataSource delegate

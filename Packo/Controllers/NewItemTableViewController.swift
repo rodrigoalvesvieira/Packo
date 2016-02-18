@@ -34,6 +34,8 @@ class NewItemTableViewController: UITableViewController, UINavigationControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 20)!]
+        
         navigationItem.title = NSLocalizedString("New item", comment: "Adding new item")
         
         nameTextField.placeholder = NSLocalizedString("Name", comment: "New item's name")
