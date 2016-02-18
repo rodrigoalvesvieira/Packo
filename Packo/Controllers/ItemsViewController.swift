@@ -79,6 +79,12 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         UIApplication.sharedApplication().statusBarStyle = .Default
         
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            
+        }
+        
         outputDateFormatter.dateFormat = "MMM dd"
         
         tableView.tableFooterView = UIView()

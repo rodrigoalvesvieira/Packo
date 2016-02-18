@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02180E7D19ABCA4A27CBF1A2 /* Pods_Packo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 289DFA2E93F8B2ACFBC2819F /* Pods_Packo.framework */; };
+		EB0AAB851C75CB7F00313BA9 /* Packo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB0AAB831C75CB7F00313BA9 /* Packo.xcdatamodeld */; };
 		EB6099E51C758C2E00B73777 /* ItemsViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6099E41C758C2E00B73777 /* ItemsViewControllerExtension.swift */; };
 		EB6099E71C758D7A00B73777 /* TripsViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6099E61C758D7A00B73777 /* TripsViewControllerExtension.swift */; };
 		EB84B0D21C759164004EA581 /* AddTripTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB84B0D11C759164004EA581 /* AddTripTableViewController.swift */; };
@@ -38,7 +39,6 @@
 		EBD91DD11C7522D900B7DA36 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DD01C7522D900B7DA36 /* UIViewExtension.swift */; };
 		EBD91DD31C7522F700B7DA36 /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DD21C7522F700B7DA36 /* TripTableViewCell.swift */; };
 		EBD91DD51C75230600B7DA36 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DD41C75230600B7DA36 /* ItemTableViewCell.swift */; };
-		EBD91DD71C75254600B7DA36 /* Packo.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DD61C75254600B7DA36 /* Packo.xcdatamodel */; };
 		EBD91DDA1C7536A200B7DA36 /* NewItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91DD91C7536A200B7DA36 /* NewItemTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +63,7 @@
 		289DFA2E93F8B2ACFBC2819F /* Pods_Packo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Packo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EF8B9027746FEB59AF27960 /* Pods-Packo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Packo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Packo/Pods-Packo.release.xcconfig"; sourceTree = "<group>"; };
 		58089CE39A60888C5960FEFC /* Pods-Packo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Packo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Packo/Pods-Packo.debug.xcconfig"; sourceTree = "<group>"; };
+		EB0AAB841C75CB7F00313BA9 /* Packo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Packo.xcdatamodel; sourceTree = "<group>"; };
 		EB6099E41C758C2E00B73777 /* ItemsViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemsViewControllerExtension.swift; path = Extensions/ItemsViewControllerExtension.swift; sourceTree = "<group>"; };
 		EB6099E61C758D7A00B73777 /* TripsViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripsViewControllerExtension.swift; path = Extensions/TripsViewControllerExtension.swift; sourceTree = "<group>"; };
 		EB84B0D11C759164004EA581 /* AddTripTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTripTableViewController.swift; path = Controllers/AddTripTableViewController.swift; sourceTree = "<group>"; };
@@ -99,7 +100,6 @@
 		EBD91DD01C7522D900B7DA36 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewExtension.swift; path = Extensions/UIViewExtension.swift; sourceTree = "<group>"; };
 		EBD91DD21C7522F700B7DA36 /* TripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripTableViewCell.swift; path = Views/TripTableViewCell.swift; sourceTree = "<group>"; };
 		EBD91DD41C75230600B7DA36 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableViewCell.swift; path = Views/ItemTableViewCell.swift; sourceTree = "<group>"; };
-		EBD91DD61C75254600B7DA36 /* Packo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Packo.xcdatamodel; sourceTree = "<group>"; };
 		EBD91DD81C752EE000B7DA36 /* Packo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Packo-Bridging-Header.h"; sourceTree = "<group>"; };
 		EBD91DD91C7536A200B7DA36 /* NewItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewItemTableViewController.swift; path = Controllers/NewItemTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,7 +186,7 @@
 				EBD91D7E1C75181C00B7DA36 /* Info.plist */,
 				EBD91DA01C751C0A00B7DA36 /* Config.plist */,
 				EBD91DA61C751D4300B7DA36 /* InfoPlist.strings */,
-				EBD91DD61C75254600B7DA36 /* Packo.xcdatamodel */,
+				EB0AAB831C75CB7F00313BA9 /* Packo.xcdatamodeld */,
 				EBD91DD81C752EE000B7DA36 /* Packo-Bridging-Header.h */,
 			);
 			path = Packo;
@@ -475,7 +475,6 @@
 				EBD91DCD1C7522BC00B7DA36 /* UIImageExtension.swift in Sources */,
 				EBD91DC01C7521C200B7DA36 /* Item.swift in Sources */,
 				EBD91DDA1C7536A200B7DA36 /* NewItemTableViewController.swift in Sources */,
-				EBD91DD71C75254600B7DA36 /* Packo.xcdatamodel in Sources */,
 				EBD91DB51C751E2500B7DA36 /* ShortcutIdentifier.swift in Sources */,
 				EB6099E51C758C2E00B73777 /* ItemsViewControllerExtension.swift in Sources */,
 				EBD91DCB1C7522AC00B7DA36 /* StringExtension.swift in Sources */,
@@ -484,6 +483,7 @@
 				EB6099E71C758D7A00B73777 /* TripsViewControllerExtension.swift in Sources */,
 				EBD91DAA1C751DB100B7DA36 /* Geocoder.swift in Sources */,
 				EBD91DD11C7522D900B7DA36 /* UIViewExtension.swift in Sources */,
+				EB0AAB851C75CB7F00313BA9 /* Packo.xcdatamodeld in Sources */,
 				EBD91DC91C75229900B7DA36 /* UIColorExtension.swift in Sources */,
 				EBD91D721C75181B00B7DA36 /* MainViewController.swift in Sources */,
 				EBD91DC41C75221900B7DA36 /* ItemsViewController.swift in Sources */,
@@ -741,6 +741,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EB0AAB831C75CB7F00313BA9 /* Packo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EB0AAB841C75CB7F00313BA9 /* Packo.xcdatamodel */,
+			);
+			currentVersion = EB0AAB841C75CB7F00313BA9 /* Packo.xcdatamodel */;
+			path = Packo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EBD91D641C75181B00B7DA36 /* Project object */;
 }
