@@ -379,6 +379,7 @@
 				TargetAttributes = {
 					EBD91D6B1C75181B00B7DA36 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 6F79H32849;
 					};
 					EBD91D821C75181C00B7DA36 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -649,6 +650,7 @@
 			baseConfigurationReference = 58089CE39A60888C5960FEFC /* Pods-Packo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -667,6 +669,7 @@
 			baseConfigurationReference = 3EF8B9027746FEB59AF27960 /* Pods-Packo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
