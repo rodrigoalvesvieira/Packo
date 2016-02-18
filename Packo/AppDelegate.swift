@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let notificationCenter = NSNotificationCenter.defaultCenter()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        BuddyBuildSDK.setup()
+        
         // Override point for customization after application launch.
         
         var config: NSDictionary?

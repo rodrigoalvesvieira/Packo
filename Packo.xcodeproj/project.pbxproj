@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		02180E7D19ABCA4A27CBF1A2 /* Pods_Packo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 289DFA2E93F8B2ACFBC2819F /* Pods_Packo.framework */; };
+		0F3755F6069656A8D3E9B48B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4111833E91194BAE5EB6730 /* QuartzCore.framework */; };
+		4A627F101B0B37CD8ECB9176 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C82849B15D9034BAB49806 /* BuddyBuildSDK.framework */; };
+		502E2E54606F3189D702944D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16E337C0803B77ACF4F0A48A /* CoreText.framework */; };
+		52381F1F7340D8151983455C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA307ECBC679072D1C91E0CB /* CoreTelephony.framework */; };
+		572F83F1F9BB5B3BF282E423 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB21DC38AF9C2AF5701F7460 /* AssetsLibrary.framework */; };
+		DF217AB8F263F9113471BDEC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0F7723DB39FAA74080A788 /* SystemConfiguration.framework */; };
 		EB0AAB851C75CB7F00313BA9 /* Packo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB0AAB831C75CB7F00313BA9 /* Packo.xcdatamodeld */; };
 		EB6099E51C758C2E00B73777 /* ItemsViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6099E41C758C2E00B73777 /* ItemsViewControllerExtension.swift */; };
 		EB6099E71C758D7A00B73777 /* TripsViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6099E61C758D7A00B73777 /* TripsViewControllerExtension.swift */; };
@@ -60,9 +66,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		16E337C0803B77ACF4F0A48A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		26C82849B15D9034BAB49806 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		289DFA2E93F8B2ACFBC2819F /* Pods_Packo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Packo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EF8B9027746FEB59AF27960 /* Pods-Packo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Packo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Packo/Pods-Packo.release.xcconfig"; sourceTree = "<group>"; };
+		3F0F7723DB39FAA74080A788 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		58089CE39A60888C5960FEFC /* Pods-Packo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Packo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Packo/Pods-Packo.debug.xcconfig"; sourceTree = "<group>"; };
+		72EFEAF9F6C5066184A97093 /* Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		AB21DC38AF9C2AF5701F7460 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		C4111833E91194BAE5EB6730 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DA307ECBC679072D1C91E0CB /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		EB0AAB841C75CB7F00313BA9 /* Packo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Packo.xcdatamodel; sourceTree = "<group>"; };
 		EB6099E41C758C2E00B73777 /* ItemsViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemsViewControllerExtension.swift; path = Extensions/ItemsViewControllerExtension.swift; sourceTree = "<group>"; };
 		EB6099E61C758D7A00B73777 /* TripsViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripsViewControllerExtension.swift; path = Extensions/TripsViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -110,6 +123,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				02180E7D19ABCA4A27CBF1A2 /* Pods_Packo.framework in Frameworks */,
+				4A627F101B0B37CD8ECB9176 /* BuddyBuildSDK.framework in Frameworks */,
+				572F83F1F9BB5B3BF282E423 /* AssetsLibrary.framework in Frameworks */,
+				502E2E54606F3189D702944D /* CoreText.framework in Frameworks */,
+				52381F1F7340D8151983455C /* CoreTelephony.framework in Frameworks */,
+				DF217AB8F263F9113471BDEC /* SystemConfiguration.framework in Frameworks */,
+				0F3755F6069656A8D3E9B48B /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +162,12 @@
 			isa = PBXGroup;
 			children = (
 				289DFA2E93F8B2ACFBC2819F /* Pods_Packo.framework */,
+				26C82849B15D9034BAB49806 /* BuddyBuildSDK.framework */,
+				AB21DC38AF9C2AF5701F7460 /* AssetsLibrary.framework */,
+				16E337C0803B77ACF4F0A48A /* CoreText.framework */,
+				DA307ECBC679072D1C91E0CB /* CoreTelephony.framework */,
+				3F0F7723DB39FAA74080A788 /* SystemConfiguration.framework */,
+				C4111833E91194BAE5EB6730 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -156,6 +181,7 @@
 				EBD91D6D1C75181B00B7DA36 /* Products */,
 				2F711BC97700F194E87A10E7 /* Pods */,
 				68C5F4E313E0930DE83E617F /* Frameworks */,
+				72EFEAF9F6C5066184A97093 /* Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -623,11 +649,16 @@
 			baseConfigurationReference = 58089CE39A60888C5960FEFC /* Pods-Packo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Packo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.kickassapps.Packo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -636,11 +667,16 @@
 			baseConfigurationReference = 3EF8B9027746FEB59AF27960 /* Pods-Packo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Packo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.kickassapps.Packo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 			};
 			name = Release;
 		};
