@@ -10,7 +10,14 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    // MARK: - Outlets
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    // MARK: - Constants
+    let notificationCenter = NSNotificationCenter.defaultCenter()
+    
+    // MARK: - Variables
+    var tripsVCOrigin: CGPoint? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +52,25 @@ class MainViewController: UIViewController {
         let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
         
         self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width * 2, self.view.frame.size.height - statusBarHeight - 66)
+        
+        tripsVCOrigin = tripsViewController.view.frame.origin
+
+        notificationCenter.addObserver(self, selector: "tripsShortcutPressed", name: "tripsShortcutPressed", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tripsShortcutPressed() {
+        UIView.animateWithDuration(0.7, delay: 1.0, options: .CurveEaseOut, animations: {
+            
+            if let tripsVCOrigin = self.tripsVCOrigin {
+                self.scrollView.contentOffset = CGPointMake(tripsVCOrigin.x, tripsVCOrigin.y)
+            }
+            }, completion: { finished in
+        })
     }
 }
 

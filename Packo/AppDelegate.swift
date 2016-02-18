@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Variables
     var window: UIWindow?
     var mixpanel: Mixpanel!
+    
+    // MARK: - Constants
+    let notificationCenter = NSNotificationCenter.defaultCenter()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -92,11 +95,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("3D Quick Action pressed: Trips")
             mixpanel.track("QuickAction Triggered", properties: ["Action": "Trips"])
             
-            let tabBarController = storyboard.instantiateViewControllerWithIdentifier("tabBarController") as! UITabBarController
+            let tripsViewController = storyboard.instantiateViewControllerWithIdentifier("TripsNavigationViewController") as! UINavigationController
             
-            tabBarController.selectedIndex = 1;
-            
-            window!.rootViewController?.presentViewController(tabBarController, animated: true, completion: { () -> Void in
+            window!.rootViewController?.presentViewController(tripsViewController, animated: true, completion: { () -> Void in
+                self.notificationCenter.postNotificationName("tripsShortcutPressed", object: nil)
             })
             
             handled = true
@@ -105,9 +107,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("3D Quick Action pressed: New Trip")
             mixpanel.track("QuickAction Triggered", properties: ["Action": "New Trip"])
             
-            let newTripController = storyboard.instantiateViewControllerWithIdentifier("newTripNavigationController") as! UINavigationController
+            let newItemController = storyboard.instantiateViewControllerWithIdentifier("NewTripTableViewNavigationController") as! UINavigationController
             
-            window!.rootViewController?.presentViewController(newTripController, animated: true, completion: { () -> Void in
+            window!.rootViewController?.presentViewController(newItemController, animated: true, completion: { () -> Void in
             })
             
             handled = true
@@ -116,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("3D Quick Action pressed: New Item")
             mixpanel.track("QuickAction Triggered", properties: ["Action": "New Item"])
             
-            let newItemController = storyboard.instantiateViewControllerWithIdentifier("newItemNavigationController") as! UINavigationController
+            let newItemController = storyboard.instantiateViewControllerWithIdentifier("NewItemTableViewNavigationController") as! UINavigationController
             
             window!.rootViewController?.presentViewController(newItemController, animated: true, completion: { () -> Void in
             })

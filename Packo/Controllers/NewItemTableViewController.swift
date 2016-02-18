@@ -22,6 +22,7 @@ class NewItemTableViewController: UITableViewController, UINavigationControllerD
     // MARK: - Constants
     let imagePicker = UIImagePickerController()
     let messageLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
+    let notificationCenter = NSNotificationCenter.defaultCenter()
     
     // MARK: - Variables
     var activityIndicator = UIActivityIndicatorView()
@@ -195,7 +196,7 @@ class NewItemTableViewController: UITableViewController, UINavigationControllerD
     }
     
     @IBAction func saveItem(sender: UIBarButtonItem) {
-        progressBarDisplayer(NSLocalizedString("Saving item", comment: "Saving the new item do the database"), true)
+        self.progressBarDisplayer(NSLocalizedString("Saving item", comment: "Saving the new item do the database"), true)
         
         dispatch_async(dispatch_get_main_queue()) {
             if let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext {
@@ -223,6 +224,8 @@ class NewItemTableViewController: UITableViewController, UINavigationControllerD
                         CSSearchableIndex.defaultSearchableIndex().indexSearchableItems([searchableItem], completionHandler: { error -> Void in
                             if error == nil {
                                 NSLog("Item successfully indexed")
+                                
+                                self.notificationCenter.postNotificationName("newItemAdded", object: nil)
                             } else {
                                 NSLog((error?.localizedDescription)!)
                             }
@@ -247,7 +250,5 @@ class NewItemTableViewController: UITableViewController, UINavigationControllerD
                 self.messageView.removeFromSuperview()
             }
         }
-        
-        //        performSegueWithIdentifier("unwindToHomeScreen", sender: self)
     }
 }

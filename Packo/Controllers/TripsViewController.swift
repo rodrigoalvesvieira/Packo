@@ -17,6 +17,9 @@ class TripsViewController: UIViewController, NSFetchedResultsControllerDelegate 
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: - Constants
+    let notificationCenter = NSNotificationCenter.defaultCenter()
+
     // MARK: - Variables
     var trips: [Trip] = []
     var deleteTripIndexPath: NSIndexPath? = nil

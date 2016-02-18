@@ -19,10 +19,11 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Constants
-    var mixpanel: Mixpanel?
     let outputDateFormatter = NSDateFormatter()
+    let notificationCenter = NSNotificationCenter.defaultCenter()
     
     // MARK: - Variables
+    var mixpanel: Mixpanel?
     var items: [Item] = []
     var trip: Trip?
     var deleteItemIndexPath: NSIndexPath? = nil
@@ -78,6 +79,8 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 20)!]
 
         UIApplication.sharedApplication().statusBarStyle = .Default
+        
+        notificationCenter.addObserver(self, selector: "newItemAdded", name: "newItemAdded", object: nil)
 
         var config: NSDictionary?
         if let path = NSBundle.mainBundle().pathForResource("Config", ofType: "plist") {
@@ -133,6 +136,18 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     deinit {
         self.tableView.emptyDataSetSource = nil
         self.tableView.emptyDataSetDelegate = nil
+    }
+    
+    func newItemAdded() {
+        NSLog("Reloading items table view data.")
+        
+        do {
+            try fetchedItemsResultsController.performFetch()
+            self.items = (fetchedItemsResultsController.fetchedObjects as? [Item])!
+            
+            self.tableView.reloadData()
+        } catch {
+        }
     }
     
     override func didReceiveMemoryWarning() {
