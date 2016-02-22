@@ -17,6 +17,7 @@
 		EB0AAB851C75CB7F00313BA9 /* Packo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB0AAB831C75CB7F00313BA9 /* Packo.xcdatamodeld */; };
 		EB6099E51C758C2E00B73777 /* ItemsViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6099E41C758C2E00B73777 /* ItemsViewControllerExtension.swift */; };
 		EB6099E71C758D7A00B73777 /* TripsViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6099E61C758D7A00B73777 /* TripsViewControllerExtension.swift */; };
+		EB7937BE1C7B2E37004D58F9 /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7937BD1C7B2E37004D58F9 /* Shared.swift */; };
 		EB84B0D21C759164004EA581 /* AddTripTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB84B0D11C759164004EA581 /* AddTripTableViewController.swift */; };
 		EBD91D701C75181B00B7DA36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91D6F1C75181B00B7DA36 /* AppDelegate.swift */; };
 		EBD91D721C75181B00B7DA36 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD91D711C75181B00B7DA36 /* MainViewController.swift */; };
@@ -79,6 +80,7 @@
 		EB0AAB841C75CB7F00313BA9 /* Packo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Packo.xcdatamodel; sourceTree = "<group>"; };
 		EB6099E41C758C2E00B73777 /* ItemsViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemsViewControllerExtension.swift; path = Extensions/ItemsViewControllerExtension.swift; sourceTree = "<group>"; };
 		EB6099E61C758D7A00B73777 /* TripsViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripsViewControllerExtension.swift; path = Extensions/TripsViewControllerExtension.swift; sourceTree = "<group>"; };
+		EB7937BD1C7B2E37004D58F9 /* Shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Shared.swift; path = Util/Shared.swift; sourceTree = "<group>"; };
 		EB84B0D11C759164004EA581 /* AddTripTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTripTableViewController.swift; path = Controllers/AddTripTableViewController.swift; sourceTree = "<group>"; };
 		EBD91D6C1C75181B00B7DA36 /* Packo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Packo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD91D6F1C75181B00B7DA36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				EBD91DB01C751DFA00B7DA36 /* IDGenerator.swift */,
+				EB7937BD1C7B2E37004D58F9 /* Shared.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB7937BE1C7B2E37004D58F9 /* Shared.swift in Sources */,
 				EBD91DC71C75227500B7DA36 /* WeatherTableViewCell.swift in Sources */,
 				EBD91DBE1C7521A000B7DA36 /* TripsViewController.swift in Sources */,
 				EBD91DB71C751E3900B7DA36 /* TemperatureScale.swift in Sources */,

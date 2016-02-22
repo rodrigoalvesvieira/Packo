@@ -14,7 +14,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     // MARK: - Constants
-    let notificationCenter = NSNotificationCenter.defaultCenter()
     
     // MARK: - Variables
     var tripsVCOrigin: CGPoint? = nil
@@ -23,10 +22,8 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
         // First VC
-        let itemsViewController = storyboard.instantiateViewControllerWithIdentifier("ItemsNavigationViewController") as! UINavigationController
+        let itemsViewController = Shared.Storyboard.main.instantiateViewControllerWithIdentifier("ItemsNavigationViewController") as! UINavigationController
         
         self.addChildViewController(itemsViewController)
         self.scrollView.addSubview(itemsViewController.view)
@@ -34,7 +31,7 @@ class MainViewController: UIViewController {
         itemsViewController.view.frame = self.scrollView.bounds
         
         // Second VC
-        let tripsViewController = storyboard.instantiateViewControllerWithIdentifier("TripsNavigationViewController") as! UINavigationController
+        let tripsViewController = Shared.Storyboard.main.instantiateViewControllerWithIdentifier("TripsNavigationViewController") as! UINavigationController
         
         var frame2 = tripsViewController.view.frame
         frame2.origin.x = self.view.frame.size.width
@@ -55,7 +52,7 @@ class MainViewController: UIViewController {
         
         tripsVCOrigin = tripsViewController.view.frame.origin
 
-        notificationCenter.addObserver(self, selector: "tripsShortcutPressed", name: "tripsShortcutPressed", object: nil)
+        Shared.NC.notificationCenter.addObserver(self, selector: "tripsShortcutPressed", name: "tripsShortcutPressed", object: nil)
     }
 
     override func didReceiveMemoryWarning() {

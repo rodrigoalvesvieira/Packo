@@ -16,11 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Variables
     var window: UIWindow?
-    var mixpanel: Mixpanel!
     
-    // MARK: - Constants
-    let notificationCenter = NSNotificationCenter.defaultCenter()
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // BuddyBuildSDK.setup()
@@ -40,10 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             // Initialize Mixpanel
             Mixpanel.sharedInstanceWithToken(mixpanelAPIToken)
-            mixpanel = Mixpanel.sharedInstance()
         }
         
-        mixpanel.track("App opened", properties: ["Time": NSDate()])
+        Shared.MixpanelInstance.mixpanelInstance.track("App opened", properties: ["Time": NSDate()])
         
         // If a shortcut was launched, display its information and take the appropriate action
         if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
@@ -63,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-        mixpanel.track("Enter Background", properties: ["Time": NSDate()])
+        Shared.MixpanelInstance.mixpanelInstance.track("Enter Background", properties: ["Time": NSDate()])
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -93,26 +88,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         guard let shortCutType = shortcutItem.type as String? else { return false }
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
         switch (shortCutType) {
         case ShortcutIdentifier.Trips.type:
             NSLog("3D Quick Action pressed: Trips")
-            mixpanel.track("QuickAction Triggered", properties: ["Action": "Trips"])
+            Shared.MixpanelInstance.mixpanelInstance.track("QuickAction Triggered", properties: ["Action": "Trips"])
             
-            let tripsViewController = storyboard.instantiateViewControllerWithIdentifier("TripsNavigationViewController") as! UINavigationController
+            let tripsViewController = Shared.Storyboard.main.instantiateViewControllerWithIdentifier("TripsNavigationViewController") as! UINavigationController
             
             window!.rootViewController?.presentViewController(tripsViewController, animated: true, completion: { () -> Void in
-                self.notificationCenter.postNotificationName("tripsShortcutPressed", object: nil)
+                Shared.NC.notificationCenter.postNotificationName("tripsShortcutPressed", object: nil)
             })
             
             handled = true
             break
         case ShortcutIdentifier.NewTrip.type:
             NSLog("3D Quick Action pressed: New Trip")
-            mixpanel.track("QuickAction Triggered", properties: ["Action": "New Trip"])
+            Shared.MixpanelInstance.mixpanelInstance.track("QuickAction Triggered", properties: ["Action": "New Trip"])
             
-            let newItemController = storyboard.instantiateViewControllerWithIdentifier("AddTripTableViewNavigationController") as! UINavigationController
+            let newItemController = Shared.Storyboard.main.instantiateViewControllerWithIdentifier("AddTripTableViewNavigationController") as! UINavigationController
             
             window!.rootViewController?.presentViewController(newItemController, animated: true, completion: { () -> Void in
             })
@@ -121,9 +114,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             break
         case ShortcutIdentifier.NewItem.type:
             NSLog("3D Quick Action pressed: New Item")
-            mixpanel.track("QuickAction Triggered", properties: ["Action": "New Item"])
+            Shared.MixpanelInstance.mixpanelInstance.track("QuickAction Triggered", properties: ["Action": "New Item"])
             
-            let newItemController = storyboard.instantiateViewControllerWithIdentifier("AddItemTableViewNavigationController") as! UINavigationController
+            let newItemController = Shared.Storyboard.main.instantiateViewControllerWithIdentifier("AddItemTableViewNavigationController") as! UINavigationController
             
             window!.rootViewController?.presentViewController(newItemController, animated: true, completion: { () -> Void in
             })

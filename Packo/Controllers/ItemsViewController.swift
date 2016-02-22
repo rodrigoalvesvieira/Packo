@@ -9,8 +9,6 @@
 import UIKit
 import CoreData
 
-import Mixpanel
-
 import DZNEmptyDataSet
 
 class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
@@ -20,10 +18,8 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: - Constants
     let outputDateFormatter = NSDateFormatter()
-    let notificationCenter = NSNotificationCenter.defaultCenter()
     
     // MARK: - Variables
-    var mixpanel: Mixpanel?
     var items: [Item] = []
     var trip: Trip?
     var deleteItemIndexPath: NSIndexPath? = nil
@@ -57,7 +53,7 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     lazy var fetchedItemsResultsController: NSFetchedResultsController = {
         let tripsFetchRequest = NSFetchRequest(entityName: "Item")
-        let primarySortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        let primarySortDescriptor = NSSortDescriptor(key: "name", ascending: false)
         
         tripsFetchRequest.sortDescriptors = [primarySortDescriptor]
         
@@ -76,22 +72,15 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 20)!]
-        
         self.navigationController!.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 20)!,
-            NSForegroundColorAttributeName: UIColor(rgba: Colors.DarkBlue.rawValue)
+            NSFontAttributeName: Shared.LayoutHelpers.navigationBarFont!,
+            NSForegroundColorAttributeName: Shared.Color.darkBlue
         ]
 
         UIApplication.sharedApplication().statusBarStyle = .Default
         
-        notificationCenter.addObserver(self, selector: "newItemAdded", name: "newItemAdded", object: nil)
-        notificationCenter.addObserver(self, selector: "newTripAdded", name: "newTripAdded", object: nil)
-
-        var config: NSDictionary?
-        if let path = NSBundle.mainBundle().pathForResource("Config", ofType: "plist") {
-            config = NSDictionary(contentsOfFile: path)
-        }
+        Shared.NC.notificationCenter.addObserver(self, selector: "newItemAdded", name: "newItemAdded", object: nil)
+        Shared.NC.notificationCenter.addObserver(self, selector: "newTripAdded", name: "newTripAdded", object: nil)
 
         do {
             try fetchedResultsController.performFetch()
@@ -102,16 +91,13 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 NSLog("Current trip found: \(currentTrip.destination as String!)")
                 
-                if let dict = config, geocodingAPIKey = dict.valueForKey("googleGeocodingAPIKey") as? String, forecastIOAPIKey = dict.valueForKey("forecastIOAPIKey") as? String {
+                self.fetchWeatherInfo()
+                
+                do {
+                    try fetchedItemsResultsController.performFetch()
+                    self.items = (fetchedItemsResultsController.fetchedObjects as? [Item])!
                     
-                    self.fetchWeatherInfo()
-                    
-                    do {
-                        try fetchedItemsResultsController.performFetch()
-                        self.items = (fetchedItemsResultsController.fetchedObjects as? [Item])!
-                        
-                        NSLog("Total of \(self.items.count) items found.")
-                    }
+                    NSLog("Total of \(self.items.count) items found.")
                 }
             } else {
                 NSLog("No trip was found!")
@@ -128,8 +114,7 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
         
-        self.mixpanel = Mixpanel.sharedInstance()
-        self.mixpanel?.track("View Controller Loaded", properties: ["View Controller Name": "ItemsViewController"])
+        Shared.MixpanelInstance.mixpanelInstance.track("View Controller Loaded", properties: ["View Controller Name": "ItemsViewController"])
     }
     
     deinit {
@@ -382,11 +367,10 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func createTripOrItemButtonPress(sender: UIBarButtonItem) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
-        let newItemController = storyboard.instantiateViewControllerWithIdentifier("AddItemTableViewNavigationController") as! UINavigationController
+        let newItemController = Shared.Storyboard.main.instantiateViewControllerWithIdentifier("AddItemTableViewNavigationController") as! UINavigationController
         
-        let newTripController = storyboard.instantiateViewControllerWithIdentifier("AddTripTableViewNavigationController") as! UINavigationController
+        let newTripController = Shared.Storyboard.main.instantiateViewControllerWithIdentifier("AddTripTableViewNavigationController") as! UINavigationController
         
         if let _ = trip {
             self.presentViewController(newItemController, animated: true, completion: nil)

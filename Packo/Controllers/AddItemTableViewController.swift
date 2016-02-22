@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 import CoreSpotlight
-import Mixpanel
 
 class AddItemTableViewController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
     
@@ -22,14 +21,12 @@ class AddItemTableViewController: UITableViewController, UINavigationControllerD
     // MARK: - Constants
     let imagePicker = UIImagePickerController()
     let messageLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
-    let notificationCenter = NSNotificationCenter.defaultCenter()
     
     // MARK: - Variables
     var activityIndicator = UIActivityIndicatorView()
     var messageView = UIView()
     
     var trip: Trip?
-    var mixpanel: Mixpanel?
     
     // MARK: - Override methods
     override func viewDidLoad() {
@@ -50,7 +47,7 @@ class AddItemTableViewController: UITableViewController, UINavigationControllerD
         
         tableView.addGestureRecognizer(swipeRight)
         
-        let buttonColor = UIColor(rgba: Colors.DarkBlue.rawValue)
+        let buttonColor = Shared.Color.darkBlue
         
         cancelButton.tintColor = buttonColor
         saveButton.tintColor = buttonColor
@@ -62,8 +59,7 @@ class AddItemTableViewController: UITableViewController, UINavigationControllerD
         // Hide tableView separators
         tableView.separatorStyle = .None
         
-        self.mixpanel = Mixpanel.sharedInstance()
-        self.mixpanel?.track("View Controller Loaded", properties: ["View Controller Name": "AddItemTableViewController"])
+        Shared.MixpanelInstance.mixpanelInstance.track("View Controller Loaded", properties: ["View Controller Name": "AddItemTableViewController"])
     }
     
     override func didReceiveMemoryWarning() {
@@ -209,6 +205,7 @@ class AddItemTableViewController: UITableViewController, UINavigationControllerD
                 
                 newItem.setValue(IDGenerator(length: 20).id, forKey: "id")
                 newItem.setValue(self.nameTextField.text?.trim(), forKey: "name")
+                newItem.setValue(NSDate(), forKey: "addedDate")
                 
                 if let itemImage = self.imageView.image {
                     guard let imageData = UIImageJPEGRepresentation(itemImage, 1) else {
@@ -228,7 +225,7 @@ class AddItemTableViewController: UITableViewController, UINavigationControllerD
                             if error == nil {
                                 NSLog("Item successfully indexed")
                                 
-                                self.notificationCenter.postNotificationName("newItemAdded", object: nil)
+                                Shared.NC.notificationCenter.postNotificationName("newItemAdded", object: nil)
                             } else {
                                 NSLog((error?.localizedDescription)!)
                             }
@@ -238,7 +235,7 @@ class AddItemTableViewController: UITableViewController, UINavigationControllerD
                     self.dismissViewControllerAnimated(true, completion: { () -> Void in
                         NSLog("New trip to \(newItem.valueForKey("name")!) saved")
                         
-                        self.mixpanel?.track("Saved Object",
+                        Shared.MixpanelInstance.mixpanelInstance.track("Saved Object",
                             properties: [
                                 "Type": Item.entityName(),
                                 "time": NSDate()

@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import Mixpanel
 
 import FSCalendar
 
@@ -26,7 +25,6 @@ class NewTripTableViewController: UITableViewController, UINavigationControllerD
     let messageLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
     let dateFormatter = NSDateFormatter()
     let outputDateFormatter = NSDateFormatter()
-    let notificationCenter = NSNotificationCenter.defaultCenter()
     
     // MARK: - Variables
     var activityIndicator = UIActivityIndicatorView()
@@ -35,8 +33,6 @@ class NewTripTableViewController: UITableViewController, UINavigationControllerD
     
     var startDate = NSDate()
     var endDate = NSDate()
-    
-    var mixpanel: Mixpanel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,16 +51,11 @@ class NewTripTableViewController: UITableViewController, UINavigationControllerD
         // Hide tableView separators
         tableView.separatorStyle = .None
         
-        let date = NSDate()
-        
-        let newDate3 = date.dateByAddingTimeInterval(60*60*24*29)
-        
-        startDateLabel.backgroundColor = UIColor(rgba: Colors.LightGray.rawValue)
+        startDateLabel.backgroundColor = Shared.Color.lightGray
         
         calendar.allowsMultipleSelection = true
         
-        self.mixpanel = Mixpanel.sharedInstance()
-        self.mixpanel?.track("View Controller Loaded", properties: ["View Controller Name": "AddTripTableViewController"])
+        Shared.MixpanelInstance.mixpanelInstance.track("View Controller Loaded", properties: ["View Controller Name": "AddTripTableViewController"])
     }
     
     func progressBarDisplayer(msg: String,_ indicator: Bool) {
@@ -100,7 +91,7 @@ class NewTripTableViewController: UITableViewController, UINavigationControllerD
         } else {
             self.endDate = date
             endDateLabel.text = outputDateFormatter.stringFromDate(date)
-            endDateLabel.backgroundColor = UIColor(rgba: Colors.LightGray.rawValue)
+            endDateLabel.backgroundColor = Shared.Color.lightGray
         }
     }
     
@@ -139,9 +130,9 @@ class NewTripTableViewController: UITableViewController, UINavigationControllerD
                     try newTrip.managedObjectContext?.save()
                     self.dismissViewControllerAnimated(true, completion: { () -> Void in
                         NSLog("New trip to \(newTrip.valueForKey("destination")!) saved")
-                        self.notificationCenter.postNotificationName("newTripAdded", object: nil)
+                        Shared.NC.notificationCenter.postNotificationName("newTripAdded", object: nil)
 
-                        self.mixpanel?.track("Saved Object",
+                        Shared.MixpanelInstance.mixpanelInstance.track("Saved Object",
                             properties: [
                                 "Type": Trip.entityName(),
                                 "time": NSDate()

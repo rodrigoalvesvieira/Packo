@@ -20,6 +20,9 @@ class Item: NSManagedObject {
     /// The item's picture in bytes.
     @NSManaged var picture: NSData!
     
+    /// The item's addition date.
+    @NSManaged var addedDate: NSDate!
+    
     /// The item's done date.
     @NSManaged var doneDate: NSDate!
     

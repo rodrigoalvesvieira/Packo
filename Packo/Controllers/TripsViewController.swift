@@ -8,8 +8,6 @@
 
 import UIKit
 import CoreData
-
-import Mixpanel
 import DZNEmptyDataSet
 
 class TripsViewController: UIViewController, NSFetchedResultsControllerDelegate {
@@ -18,8 +16,7 @@ class TripsViewController: UIViewController, NSFetchedResultsControllerDelegate 
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Constants
-    let notificationCenter = NSNotificationCenter.defaultCenter()
-
+    
     // MARK: - Variables
     var trips: [Trip] = []
     var deleteTripIndexPath: NSIndexPath? = nil
@@ -42,20 +39,17 @@ class TripsViewController: UIViewController, NSFetchedResultsControllerDelegate 
         return frc
     }()
     
-    // MARK: - Constants
-    var mixpanel: Mixpanel?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.barTintColor = UIColor(rgba: Colors.LightBlue.rawValue)
+        self.navigationController?.navigationBar.barTintColor = Shared.Color.lightBlue
         
         self.navigationController!.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 20)!,
-            NSForegroundColorAttributeName: UIColor.whiteColor()
+            NSFontAttributeName: Shared.LayoutHelpers.navigationBarFont!,
+            NSForegroundColorAttributeName: Shared.Color.white
         ]
 
         tableView.tableFooterView = UIView()
@@ -67,13 +61,12 @@ class TripsViewController: UIViewController, NSFetchedResultsControllerDelegate 
             NSLog("An error occurred: could not fetch Trip")
         }
         
-        notificationCenter.addObserver(self, selector: "newTripAdded", name: "newTripAdded", object: nil)
+        Shared.NC.notificationCenter.addObserver(self, selector: "newTripAdded", name: "newTripAdded", object: nil)
 
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
         
-        self.mixpanel = Mixpanel.sharedInstance()
-        self.mixpanel?.track("View Controller Loaded", properties: ["View Controller Name": "TripsViewController"])
+        Shared.MixpanelInstance.mixpanelInstance.track("View Controller Loaded", properties: ["View Controller Name": "TripsViewController"])
     }
     
     deinit {

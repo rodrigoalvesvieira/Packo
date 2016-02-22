@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
     <entity name="Item" representedClassName=".Item" syncable="YES">
+        <attribute name="addedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="doneDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,7 +16,7 @@
         <relationship name="items" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="trip" inverseEntity="Item" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Item" positionX="-63" positionY="-18" width="128" height="135"/>
         <element name="Trip" positionX="-54" positionY="18" width="128" height="120"/>
     </elements>
 </model>
