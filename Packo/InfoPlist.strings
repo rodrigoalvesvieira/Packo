@@ -10,7 +10,7 @@ shortcutTitle1 = "New Item";
 shortcutSubtitle1 = "Create a new item";
 
 shortcutTitle2 = "New Trip";
-shortcutSubtitle2 = "Create a new irip";
+shortcutSubtitle2 = "Create a new trip";
 
 shortcutTitle3 = "My Trips";
 shortcutSubtitle3 = "Browse all of your trips";
