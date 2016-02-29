@@ -2,6 +2,10 @@ platform :ios, '9.1'
 use_frameworks!
 
 target 'Packo' do
+  # Crash Reporting
+  pod 'Fabric', '~> 1.6'
+  pod 'Crashlytics', '~> 3.7'
+    
   # Analytics stuff
   pod 'Mixpanel', '~> 2.9'
 

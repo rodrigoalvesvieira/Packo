@@ -8,6 +8,10 @@ App Store description:
 >
 > Forget about all this, with Packo you will never forget anything again!
 
+### Other Links
+
+1. Packo on App Annie https://www.appannie.com/apps/ios/app/packo/details/
+
 ###### Technologies used in this app
 
 CoreData, CloudKit, NSUserDefaults, ClockKit
