@@ -33,8 +33,7 @@ class AddItemTableViewController: UITableViewController, UINavigationControllerD
         super.viewDidLoad()
         
         self.navigationController!.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: Shared.LayoutHelpers.navigationBarFont!,
-            NSForegroundColorAttributeName: Shared.Color.darkBlue
+            NSFontAttributeName: Shared.LayoutHelpers.navigationBarFont!
         ]
         
         navigationItem.title = NSLocalizedString("New item", comment: "Adding new item")

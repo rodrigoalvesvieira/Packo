@@ -105,7 +105,6 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
         } catch {
-            
         }
         
         outputDateFormatter.dateFormat = "MMM dd"
@@ -129,7 +128,6 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         do {
             try fetchedItemsResultsController.performFetch()
             self.items = (fetchedItemsResultsController.fetchedObjects as? [Item])!
-            
             
             dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadData()
@@ -192,8 +190,25 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
         
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        if identifier == "peekItemDetail" { return false }
+//        if identifier == "peekItemDetail" { return f }
         return true
+    }
+    
+    // MARK: - Segues
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "peekItemDetail" {
+            
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                NSLog("indexpath manero eh \(indexPath.row)")
+                let item = items[indexPath.row - 1]
+                
+                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! ItemDetailViewController
+                controller.item = item
+                
+                
+            }
+        }
     }
     
     // Mark: - UITableViewDataSource delegate

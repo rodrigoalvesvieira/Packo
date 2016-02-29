@@ -14,6 +14,7 @@
 		52381F1F7340D8151983455C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA307ECBC679072D1C91E0CB /* CoreTelephony.framework */; };
 		572F83F1F9BB5B3BF282E423 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB21DC38AF9C2AF5701F7460 /* AssetsLibrary.framework */; };
 		DF217AB8F263F9113471BDEC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F0F7723DB39FAA74080A788 /* SystemConfiguration.framework */; };
+		EB09939C1C8429EA008C0896 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB09939B1C8429EA008C0896 /* ItemDetailViewController.swift */; };
 		EB0AAB851C75CB7F00313BA9 /* Packo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB0AAB831C75CB7F00313BA9 /* Packo.xcdatamodeld */; };
 		EB6099E51C758C2E00B73777 /* ItemsViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6099E41C758C2E00B73777 /* ItemsViewControllerExtension.swift */; };
 		EB6099E71C758D7A00B73777 /* TripsViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6099E61C758D7A00B73777 /* TripsViewControllerExtension.swift */; };
@@ -77,6 +78,7 @@
 		AB21DC38AF9C2AF5701F7460 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		C4111833E91194BAE5EB6730 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DA307ECBC679072D1C91E0CB /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		EB09939B1C8429EA008C0896 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemDetailViewController.swift; path = Controllers/ItemDetailViewController.swift; sourceTree = "<group>"; };
 		EB0AAB841C75CB7F00313BA9 /* Packo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Packo.xcdatamodel; sourceTree = "<group>"; };
 		EB6099E41C758C2E00B73777 /* ItemsViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemsViewControllerExtension.swift; path = Extensions/ItemsViewControllerExtension.swift; sourceTree = "<group>"; };
 		EB6099E61C758D7A00B73777 /* TripsViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripsViewControllerExtension.swift; path = Extensions/TripsViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				EBD91D711C75181B00B7DA36 /* MainViewController.swift */,
+				EB09939B1C8429EA008C0896 /* ItemDetailViewController.swift */,
 				EBD91DD91C7536A200B7DA36 /* AddItemTableViewController.swift */,
 				EBD91DC31C75221900B7DA36 /* ItemsViewController.swift */,
 				EB84B0D11C759164004EA581 /* AddTripTableViewController.swift */,
@@ -533,6 +536,7 @@
 				EBD91D721C75181B00B7DA36 /* MainViewController.swift in Sources */,
 				EBD91DC41C75221900B7DA36 /* ItemsViewController.swift in Sources */,
 				EB84B0D21C759164004EA581 /* AddTripTableViewController.swift in Sources */,
+				EB09939C1C8429EA008C0896 /* ItemDetailViewController.swift in Sources */,
 				EBD91DAE1C751DD900B7DA36 /* Weather.swift in Sources */,
 				EBD91DD51C75230600B7DA36 /* ItemTableViewCell.swift in Sources */,
 				EBD91D701C75181B00B7DA36 /* AppDelegate.swift in Sources */,
