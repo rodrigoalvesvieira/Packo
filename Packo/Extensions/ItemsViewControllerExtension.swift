@@ -12,12 +12,15 @@ extension ItemsViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let attributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 28)!]
-        return NSAttributedString(string: "My suitcase", attributes: attributes)
+        let string = NSLocalizedString("My suitcase", comment: "")
+        return NSAttributedString(string: string, attributes: attributes)
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let attributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 18)!]
-        return NSAttributedString(string: "You don't have any trip planned yet 😞", attributes: attributes)
+        let string = NSLocalizedString("You don't have any trip planned yet 😞", comment: "")
+        
+        return NSAttributedString(string: string, attributes: attributes)
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {

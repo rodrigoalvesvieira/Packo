@@ -73,8 +73,7 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         
         self.navigationController!.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: Shared.LayoutHelpers.navigationBarFont!,
-            NSForegroundColorAttributeName: Shared.Color.darkBlue
+            NSFontAttributeName: Shared.LayoutHelpers.navigationBarFont!
         ]
 
         UIApplication.sharedApplication().statusBarStyle = .Default
@@ -90,6 +89,8 @@ class ItemsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 trip = currentTrip
                 
                 NSLog("Current trip found: \(currentTrip.destination as String!)")
+                
+                Shared.DB.currentTrip = currentTrip
                 
                 self.fetchWeatherInfo()
                 

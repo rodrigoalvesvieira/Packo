@@ -42,6 +42,7 @@ class NewTripTableViewController: UITableViewController, UINavigationControllerD
         dateFormatter.dateFormat = "yyyy-MM-dd"
         outputDateFormatter.dateFormat = "E, dd MMM yyyy"
         
+        destinationTextField.delegate = self
         destinationTextField.placeholder = NSLocalizedString("New York City", comment: "New trip's destination")
         
         // Set up the button and disable it until the user has typed a name

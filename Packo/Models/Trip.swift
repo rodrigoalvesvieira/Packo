@@ -26,7 +26,10 @@ class Trip: NSManagedObject {
     @NSManaged var endDate: NSDate?
     
     // The trip's items
-    @NSManaged var items: [Item]
+    @NSManaged var items: NSSet
+    
+    // Method for adding an item to the trip.
+    @NSManaged func addItemsObject(item: Item)
     
     // An trip's name should be 2 chars long or more
     class var minDestinationLength: Int { return 2 }

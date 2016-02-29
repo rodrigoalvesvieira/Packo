@@ -32,7 +32,10 @@ class AddItemTableViewController: UITableViewController, UINavigationControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 20)!]
+        self.navigationController!.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: Shared.LayoutHelpers.navigationBarFont!,
+            NSForegroundColorAttributeName: Shared.Color.darkBlue
+        ]
         
         navigationItem.title = NSLocalizedString("New item", comment: "Adding new item")
         
@@ -54,7 +57,9 @@ class AddItemTableViewController: UITableViewController, UINavigationControllerD
         
         imageView.backgroundColor = buttonColor
         
-        print("nosso trip eh \(trip?.destination)")
+        if let currentTrip = Shared.DB.currentTrip {
+            NSLog("Current trip is \(currentTrip.destination)")
+        }
         
         // Hide tableView separators
         tableView.separatorStyle = .None
@@ -78,8 +83,9 @@ class AddItemTableViewController: UITableViewController, UINavigationControllerD
             imagePicker.delegate = self
             
             if indexPath.row == 0 {
+                let message = NSLocalizedString("Choose picture", comment: "")
                 
-                let optionMenu = UIAlertController(title: nil, message: "Escolher foto", preferredStyle: .ActionSheet)
+                let optionMenu = UIAlertController(title: nil, message: message, preferredStyle: .ActionSheet)
                 
                 // Choose to delete the current picture
                 let deleteAction = UIAlertAction(title: NSLocalizedString("Delete", comment: "Delete the new item's picture"), style: .Destructive, handler: {

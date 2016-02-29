@@ -10,6 +10,10 @@ import Foundation
 import Mixpanel
 
 struct Shared {
+    struct DB {
+        static var currentTrip: Trip? = nil
+    }
+    
     struct AppDel {
         static let appDel = UIApplication.sharedApplication().delegate as? AppDelegate
     }

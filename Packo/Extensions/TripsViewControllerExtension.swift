@@ -12,7 +12,8 @@ extension TripsViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let attributes = [ NSFontAttributeName: UIFont(name: "AvenirNext-Medium", size: 28)!]
-        return NSAttributedString(string: "My trips", attributes: attributes)
+        let string = NSLocalizedString("My trips", comment: "")
+        return NSAttributedString(string: string, attributes: attributes)
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
